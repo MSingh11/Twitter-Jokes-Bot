@@ -15,12 +15,16 @@ user_agent="Test")
 
 joke_list=[]
 
-for submission in reddit.subreddit("Jokes").top("day",limit=30):
-    if len(submission.selftext)<=280 and len(submission.title)<=120:
-        joke_list.append(submission.title + "\n"+ submission.selftext)
+while True:
+    for submission in reddit.subreddit("Jokes").new(limit=10):
+        if len(submission.selftext)<=280 and len(submission.title)<=120:
+            joke_list.append(submission.title + "\n"+ submission.selftext)
 
-for jokes in range(0,5):
-    tweet=joke_list[jokes]
-    api.update_status(tweet)
-    print("Tweet Sent")
-
+    for jokes in range(0,1):
+        sleep(1800)
+        tweet=joke_list[jokes]
+        try:
+            api.update_status(tweet)
+            print("Tweet Sent")
+        except:
+            print("Error")
