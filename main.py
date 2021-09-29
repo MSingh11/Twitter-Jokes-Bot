@@ -25,6 +25,6 @@ while True:
         tweet=joke_list[jokes]
         try:
             api.update_status(tweet)
-            print("Tweet Sent")
+            print("Tweet is Sent")
         except:
             print("Error")
